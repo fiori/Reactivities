@@ -22,7 +22,7 @@ function App() {
   return (
     <div>
       <Header as='h2' icon='users' content='Reactivities' />
-      <Container>
+      <Container> 
         <Segment inverted>
           <List divided inverted relaxed>
                 {
