@@ -1,14 +1,11 @@
 import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Header, List, Segment, Divider, Icon, Container } from "semantic-ui-react";
-import PlaceholderExampleGrid from "../../features/PlaceholderExample";
-import RevealExampleRotate from "../../features/RotateGallery";
-import CardExampleGroups from "../../features/Card";
+import { Container } from "semantic-ui-react";
 import { Activity } from "../models/activity";
 import NavBar from "./NavBar";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
-import { getuid } from "process";
+import { v4 as uuid } from "uuid";
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -38,20 +35,10 @@ function App() {
     setEditMode(false);
   }
 
-  function CreateGuid() {
-    function _p8(s: boolean) {
-      var p = (Math.random().toString(16) + "000000000").substr(2, 8);
-      return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
-    }
-    return _p8(false) + _p8(true) + _p8(true) + _p8(false);
-  }
-
   function handleCreateOrEditActivity(activity: Activity) {
-    if (activity.id) setActivities([activity, ...activities.filter((a) => a.id !== activity.id)]);
-    else {
-      activity.id = CreateGuid();
-      setActivities([activity, ...activities]);
-    }
+    activity.id
+      ? setActivities([activity, ...activities.filter((a) => a.id !== activity.id)])
+      : setActivities([{ ...activity, id: uuid() }, ...activities]);
 
     setEditMode(false);
     setSelectedActivity(activity);

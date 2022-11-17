@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Grid, List } from "semantic-ui-react";
+import React from "react";
+import { Grid } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import ActivityDetails from "../details/ActivityDetails";
 import ActivityForm from "../form/ActivityForm";
