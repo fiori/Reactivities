@@ -6,9 +6,15 @@ interface Props {
   activity: Activity;
   cancelSelectedActivity: () => void;
   handleOpenForm: (id: string) => void;
+  deleteSelectedActivity: (id: string) => void;
 }
 
-export default function ActivityDetails({ activity, cancelSelectedActivity, handleOpenForm }: Props) {
+export default function ActivityDetails({
+  activity,
+  cancelSelectedActivity,
+  handleOpenForm,
+  deleteSelectedActivity,
+}: Props) {
   return (
     <Card fluid>
       <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
@@ -22,6 +28,7 @@ export default function ActivityDetails({ activity, cancelSelectedActivity, hand
       <Card.Content extra>
         <Button.Group>
           <Button onClick={() => handleOpenForm(activity.id)} basic color="blue" content="Edit" />
+          <Button onClick={() => deleteSelectedActivity(activity.id)} basic color="red" content="Delete" />
           <Button onClick={cancelSelectedActivity} basic color="grey" content="Cancel" />
         </Button.Group>
       </Card.Content>
